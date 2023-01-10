@@ -1,9 +1,11 @@
 import "./styles/main.css";
 
-const API_KEY = "7e6d5805a18b4200be3f7a32effc33d3";
+// const API_KEY = "7e6d5805a18b4200be3f7a32effc33d3";
+const API_KEY = "ddf79ec7a31549cd88aee505175a16b8";
 
 const LOCAL_STORAGE_KEYS = ["language", "pageSize"]
 const PAGE_SIZES = [10, 20, 50, 100];
+const CHARS_AMOUNT_FOR_ARTICLE_CONTENT = 60;
 const COUNTRIES = [
   {
     localName: "Polska",
@@ -62,8 +64,7 @@ const getCountries = () => {
 }
 
 const handleClickedArticle = (article) => {
-  // alert();
-  // console.log(article)
+  window.open(article.url, '_blank').focus();
 }
 
 const selectChangeHandler = (event) => {
@@ -103,8 +104,12 @@ const convertDate = (strDate) => {
 }
 
 const convertContentToShortText = (str) => {
-  const result = `${str ? str.slice(0, 60) : "No content"}...`
-  return result;
+  if(str) {
+    let trimmedString = str.substr(0, CHARS_AMOUNT_FOR_ARTICLE_CONTENT);
+    trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + "..."; 
+    return trimmedString;
+  }
+  return "No content";
 }
 
 const handleInitialData = () => {
@@ -141,8 +146,11 @@ const display = (articles) => {
     photoDiv.className = "photo_div";
     const overlayDivTop = document.createElement("div");
     overlayDivTop.className = "overlay_div_top"
+    overlayDivTop.onclick = () => handleClickedArticle(article);
+
     const overlayDivBottom = document.createElement("div");
-    overlayDivBottom.className = "overlay_div_bottom"
+    overlayDivBottom.className = "overlay_div_bottom";
+    overlayDivBottom.onclick = () => handleClickedArticle(article);
 
     const articleTitle = document.createElement("h1");
     articleTitle.className = "article_title";
@@ -187,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   countriesSelect.appendChild(getCountries());
 
   const pageSizeSelect = document.createElement("select");
-  pageSizeSelect.id = "countries_select";
+  pageSizeSelect.id = "pageSize_select";
   pageSizeSelect.name = LOCAL_STORAGE_KEYS[1];
   pageSizeSelect.onchange = selectChangeHandler;
   pageSizeSelect.appendChild(getPageSizes());

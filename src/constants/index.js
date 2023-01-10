@@ -1,4 +1,3 @@
-// const API_KEY = "7e6d5805a18b4200be3f7a32effc33d3";
 export const API_KEY = "ddf79ec7a31549cd88aee505175a16b8";
 
 export const LOCAL_STORAGE_KEYS = ["language", "pageSize"]

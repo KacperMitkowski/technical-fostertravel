@@ -1,0 +1,59 @@
+body {
+  background: yellow;
+  padding: 10px;
+  margin: 10px;
+}
+
+h1, h2, h3, h4, h5 {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#container {
+  background: red;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.photo_div {
+  margin-top: 15px;
+  position: relative;
+}
+
+.photo_div:nth-last-child(-n+2) {
+  margin-bottom: 15px;
+}
+
+.overlay_div_top {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  cursor: pointer;
+}
+
+.overlay_div_bottom {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  cursor: pointer;
+}
+
+.article_title {
+  inline-size: 470px;
+  color: white;
+}
+
+.article_date {
+  color: white;
+}
+
+.article_summary {
+  color: white;
+  margin: 0;
+  inline-size: 470px;
+}
+
+.article_img {
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+}

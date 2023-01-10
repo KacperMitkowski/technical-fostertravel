@@ -1,11 +1,15 @@
 body {
-  background: linear-gradient(#fff465, #9198e5);;
+  background: linear-gradient(#fff465, #9198e5);
   padding: 10px;
   margin: 10px;
 }
 
 h1, h2, h3, h4, h5 {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#main_header {
+  color: rgb(209, 24, 24);
 }
 
 #container {
@@ -57,63 +61,18 @@ h1, h2, h3, h4, h5 {
   cursor: pointer;
 }
 
-
-/* The container must be positioned relative: */
-.custom-select {
-  position: relative;
-  font-family: Arial;
+#countries_select {
+  width: 200px;
+  height: 40px;
+  margin-right: 20px;
 }
 
-.custom-select select {
-  display: none; /*hide original SELECT element: */
+#countries_select option {
+  padding: 30px;
 }
 
-.select-selected {
-  background-color: DodgerBlue;
-}
-
-/* Style the arrow inside the select element: */
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
-/* Point the arrow upwards when the select box is open (active): */
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
-
-/* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-}
-
-/* Style items (options): */
-.select-items {
-  position: absolute;
-  background-color: DodgerBlue;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-}
-
-/* Hide the items when the select box is closed: */
-.select-hide {
-  display: none;
-}
-
-.select-items div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+#pageSize_select {
+  width: 200px;
+  height: 40px;
+  margin-right: 20px;
 }

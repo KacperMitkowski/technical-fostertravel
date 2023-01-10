@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5 {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+option {
+  zoom: 1.5;
+}
+
 #main_header {
   color: rgb(209, 24, 24);
 }
@@ -20,6 +24,8 @@ h1, h2, h3, h4, h5 {
 .photo_div {
   margin-top: 15px;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .photo_div:nth-last-child(-n+2) {
@@ -28,15 +34,12 @@ h1, h2, h3, h4, h5 {
 
 .overlay_div_top {
   position: absolute;
-  top: 8px;
-  left: 16px;
   cursor: pointer;
 }
 
 .overlay_div_bottom {
   position: absolute;
-  bottom: 8px;
-  left: 16px;
+  bottom: 10px;
   cursor: pointer;
 }
 

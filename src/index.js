@@ -1,33 +1,6 @@
 import "./styles/main.css";
-
-// const API_KEY = "7e6d5805a18b4200be3f7a32effc33d3";
-const API_KEY = "ddf79ec7a31549cd88aee505175a16b8";
-
-const LOCAL_STORAGE_KEYS = ["language", "pageSize"]
-const PAGE_SIZES = [10, 20, 50, 100];
-const CHARS_AMOUNT_FOR_ARTICLE_CONTENT = 60;
-const COUNTRIES = [
-  {
-    localName: "Polska",
-    name: "Poland",
-    prefix: "pl",
-  },
-  {
-    localName: "Czechy",
-    name: "Czechia",
-    prefix: "cz"
-  },
-  {
-    localName: "Niemcy",
-    name: "Germany",
-    prefix: "de"
-  },
-  {
-    localName: "Stany Zjednoczone",
-    name: "USA",
-    prefix: "us"
-  },
-];
+import { API_KEY, LOCAL_STORAGE_KEYS, PAGE_SIZES, CHARS_AMOUNT_FOR_ARTICLE_CONTENT, COUNTRIES } from "./constants/index";
+import { convertDate, convertContentToShortText } from "./helpers/index"
 
 const prepareHeader = () => {
   const header = document.createElement("h1");
@@ -88,28 +61,6 @@ const getPageSizes = () => {
   })
 
   return options;
-}
-
-const convertDate = (strDate) => {
-  const date = new Date(strDate);
-  const result =
-  ("00" + (date.getMonth() + 1)).slice(-2) + "." +
-  ("00" + date.getDate()).slice(-2) + "." +
-  date.getFullYear() + " " +
-  ("00" + date.getHours()).slice(-2) + ":" +
-  ("00" + date.getMinutes()).slice(-2) + ":" +
-  ("00" + date.getSeconds()).slice(-2);
-
-  return result;
-}
-
-const convertContentToShortText = (str) => {
-  if(str) {
-    let trimmedString = str.substr(0, CHARS_AMOUNT_FOR_ARTICLE_CONTENT);
-    trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + "..."; 
-    return trimmedString;
-  }
-  return "No content";
 }
 
 const handleInitialData = () => {
@@ -181,13 +132,15 @@ const display = (articles) => {
   })
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", () => {
   handleInitialData();
   getDataAndDisplay();
 
+  // prepare container
   const container = document.createElement('div');
   container.id = "container";
 
+  // prepare selects
   const countriesSelect = document.createElement("select");
   countriesSelect.id = "countries_select";
   countriesSelect.name = LOCAL_STORAGE_KEYS[0];
@@ -200,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   pageSizeSelect.onchange = selectChangeHandler;
   pageSizeSelect.appendChild(getPageSizes());
 
+  // append to body
   document.body.appendChild(countriesSelect);
   document.body.appendChild(pageSizeSelect);
   document.body.appendChild(container);
